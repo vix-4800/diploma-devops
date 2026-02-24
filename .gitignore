@@ -1,0 +1,5 @@
+.env
+*.log
+.phpunit.result.cache
+/vendor/
+api/vendor/
