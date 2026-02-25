@@ -40,7 +40,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./configs/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
 
 volumes:
   pg_data:
