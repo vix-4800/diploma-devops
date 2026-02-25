@@ -2,7 +2,7 @@ COMPOSE = docker compose
 COMPOSE_FILE = compose.yml
 COMPOSE_NGINX = docker compose -f compose.nginx.yml
 
-.PHONY: help up up-nginx down down-nginx build restart ps logs logs-nginx api-shell db-shell api-logs db-logs test-health test-db deps
+.PHONY: help up up-nginx down down-nginx build restart ps logs logs-nginx api-shell db-shell api-logs db-logs test-health test-db deps init env
 
 help:
 	@printf '%s\n' \
@@ -20,7 +20,13 @@ help:
 	  '  db-shell   - psql shell inside db container' \
 	  '  test-health - curl /health' \
 	  '  test-db     - curl /db/ping' \
-	  '  deps        - composer install (local)'
+	  '  deps        - composer install (local)' \
+	  '  init        - initialize environment'
+
+init: env build deps up
+
+env:
+	cp .env.example .env
 
 up:
 	$(COMPOSE) -f $(COMPOSE_FILE) up -d --build
