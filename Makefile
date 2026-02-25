@@ -34,11 +34,17 @@ up:
 up-nginx:
 	$(COMPOSE_NGINX) up -d --build
 
+up-monitoring:
+	$(COMPOSE) -f docker-compose.monitoring.yml up -d
+
 down:
 	$(COMPOSE) -f $(COMPOSE_FILE) down
 
 down-nginx:
 	$(COMPOSE_NGINX) down
+
+down-monitoring:
+	$(COMPOSE) -f docker-compose.monitoring.yml down
 
 build:
 	$(COMPOSE) -f $(COMPOSE_FILE) build api
